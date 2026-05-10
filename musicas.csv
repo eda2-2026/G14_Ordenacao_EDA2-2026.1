@@ -1,41 +1,72 @@
-nome,album,artista,genero
-Indestructible,Indestructible,Disturbed,Heavy Metal
-The Night,Indestructible,Disturbed,Heavy Metal
-Stupify,The Sickness,Disturbed,Nu Metal
-Psychosocial,All Hope Is Gone,Slipknot,Nu Metal
-Duality,Vol. 3: (The Subliminal Verses),Slipknot,Nu Metal
-Spider Bites,Spider Bites,Ivycomb,Pop
-Sun Spots,Rebirth,Ivycomb,Electronic
-Strays,Raised by Aliens,Ivycomb,Electronic
-Linger in the Rain,Linger in the Rain,YonKaGor,Pop
-Numb,Meteora,Linkin Park,Rock
-In the End,Hybrid Theory,Linkin Park,Rock
-Bohemian Rhapsody,A Night at the Opera,Queen,Rock
-Billie Jean,Thriller,Michael Jackson,Pop
-Beat It,Thriller,Michael Jackson,Pop
-Shape of You,Divide,Ed Sheeran,Pop
-Blinding Lights,After Hours,The Weeknd,Pop
-Someone Like You,21,Adele,Pop
-Rolling in the Deep,21,Adele,Pop
-Smells Like Teen Spirit,Nevermind,Nirvana,Grunge
-Come As You Are,Nevermind,Nirvana,Grunge
-Lose Yourself,8 Mile,Eminem,Rap
-Without Me,The Eminem Show,Eminem,Rap
-God's Plan,Scorpion,Drake,Rap
-HUMBLE.,DAMN.,Kendrick Lamar,Rap
-Not Like Us,Not Like Us,Kendrick Lamar,Hip Hop
-One Dance,Views,Drake,Hip Hop
-Believer,Evolve,Imagine Dragons,Alternative
-Radioactive,Night Visions,Imagine Dragons,Alternative
-Viva La Vida,Viva la Vida or Death and All His Friends,Coldplay,Alternative
-Yellow,Parachutes,Coldplay,Alternative
-Take on Me,Hunting High and Low,a-ha,Synthpop
-Sweet Child O' Mine,Appetite for Destruction,Guns N' Roses,Rock
-Wonderwall,(What's the Story) Morning Glory?,Oasis,Britpop
-Hotel California,Hotel California,Eagles,Rock
-Stairway to Heaven,Led Zeppelin IV,Led Zeppelin,Rock
-Hey Jude,Hey Jude,The Beatles,Rock
-Imagine,Imagine,John Lennon,Soft Rock
-Thriller,Thriller,Michael Jackson,Pop
-Bad Guy,When We All Fall Asleep Where Do We Go?,Billie Eilish,Pop
-Firework,Teenage Dream,Katy Perry,Pop
+nome,album,artista,genero,ano,duracao
+Indestructible,Indestructible,Disturbed,Heavy Metal,2008,4:38
+The Night,Indestructible,Disturbed,Heavy Metal,2008,4:46
+Stupify,The Sickness,Disturbed,Nu Metal,2000,4:34
+Psychosocial,All Hope Is Gone,Slipknot,Nu Metal,2008,4:43
+Duality,Vol. 3: (The Subliminal Verses),Slipknot,Nu Metal,2004,4:12
+Spider Bites,Spider Bites,Ivycomb,Pop,2022,3:11
+Sun Spots,Rebirth,Ivycomb,Electronic,2021,2:59
+Strays,Raised by Aliens,Ivycomb,Electronic,2023,3:25
+Linger in the Rain,Linger in the Rain,YonKaGor,Pop,2022,3:40
+Numb,Meteora,Linkin Park,Rock,2003,3:05
+In the End,Hybrid Theory,Linkin Park,Rock,2000,3:36
+Breaking the Habit,Meteora,Linkin Park,Rock,2003,3:16
+Faint,Meteora,Linkin Park,Rock,2003,2:42
+Chop Suey!,Toxicity,System of a Down,Metal,2001,3:30
+Toxicity,Toxicity,System of a Down,Metal,2001,3:39
+Aerials,Toxicity,System of a Down,Metal,2001,3:55
+Monster,The Fame Monster,Lady Gaga,Pop,2009,4:09
+Bad Romance,The Fame Monster,Lady Gaga,Pop,2009,4:54
+Poker Face,The Fame,Lady Gaga,Pop,2008,3:58
+Blinding Lights,After Hours,The Weeknd,Synthwave,2020,3:20
+Starboy,Starboy,The Weeknd,R&B,2016,3:50
+Save Your Tears,After Hours,The Weeknd,Synthwave,2020,3:35
+Believer,Evolve,Imagine Dragons,Alternative,2017,3:24
+Thunder,Evolve,Imagine Dragons,Alternative,2017,3:07
+Radioactive,Night Visions,Imagine Dragons,Alternative,2012,3:06
+Demons,Night Visions,Imagine Dragons,Alternative,2012,2:57
+Smells Like Teen Spirit,Nevermind,Nirvana,Grunge,1991,5:01
+Come As You Are,Nevermind,Nirvana,Grunge,1991,3:38
+Lithium,Nevermind,Nirvana,Grunge,1991,4:17
+Bohemian Rhapsody,A Night at the Opera,Queen,Rock,1975,5:55
+Don't Stop Me Now,Jazz,Queen,Rock,1978,3:29
+Another One Bites the Dust,The Game,Queen,Rock,1980,3:35
+Billie Jean,Thriller,Michael Jackson,Pop,1982,4:54
+Beat It,Thriller,Michael Jackson,Rock,1982,4:18
+Thriller,Thriller,Michael Jackson,Pop,1982,5:57
+Shape of You,Divide,Ed Sheeran,Pop,2017,3:53
+Perfect,Divide,Ed Sheeran,Pop,2017,4:23
+Castle on the Hill,Divide,Ed Sheeran,Pop,2017,4:21
+Levitating,Future Nostalgia,Dua Lipa,Pop,2020,3:23
+Physical,Future Nostalgia,Dua Lipa,Pop,2020,3:13
+New Rules,Dua Lipa,Dua Lipa,Pop,2017,3:29
+Happier Than Ever,Happier Than Ever,Billie Eilish,Alternative,2021,4:58
+Bad Guy,When We All Fall Asleep Where Do We Go?,Billie Eilish,Alternative,2019,3:14
+Ocean Eyes,Ocean Eyes,Billie Eilish,Alternative,2016,3:20
+Counting Stars,Native,OneRepublic,Pop Rock,2013,4:17
+Apologize,Dreaming Out Loud,OneRepublic,Pop Rock,2007,3:28
+Secrets,Waking Up,OneRepublic,Pop Rock,2009,3:44
+Uptown Funk,Uptown Special,Mark Ronson,Funk,2014,4:30
+Locked Out of Heaven,Unorthodox Jukebox,Bruno Mars,Pop,2012,3:54
+Grenade,Doo-Wops & Hooligans,Bruno Mars,Pop,2010,3:42
+Take On Me,Hunting High and Low,a-ha,Synthpop,1985,3:48
+Africa,Toto,Toto,Rock,1982,4:55
+Sweet Dreams,Sweet Dreams,Eurythmics,Synthpop,1983,3:36
+Someone Like You,21,Adele,Pop,2011,4:45
+Rolling in the Deep,21,Adele,Pop,2010,3:48
+Lose Yourself,8 Mile,Eminem,Rap,2002,5:26
+Without Me,The Eminem Show,Eminem,Rap,2002,4:50
+God's Plan,Scorpion,Drake,Rap,2018,3:19
+HUMBLE.,DAMN.,Kendrick Lamar,Rap,2017,2:57
+Not Like Us,Not Like Us,Kendrick Lamar,Hip Hop,2024,4:34
+One Dance,Views,Drake,Hip Hop,2016,2:54
+Viva La Vida,Viva la Vida or Death and All His Friends,Coldplay,Alternative,2008,4:02
+Yellow,Parachutes,Coldplay,Alternative,2000,4:29
+Sweet Child O' Mine,Appetite for Destruction,Guns N' Roses,Rock,1987,5:56
+Wonderwall,(What's the Story) Morning Glory?,Oasis,Britpop,1995,4:18
+Hotel California,Hotel California,Eagles,Rock,1976,6:30
+Stairway to Heaven,Led Zeppelin IV,Led Zeppelin,Rock,1971,8:02
+Hey Jude,Hey Jude,The Beatles,Rock,1968,7:11
+Imagine,Imagine,John Lennon,Soft Rock,1971,3:03
+Firework,Teenage Dream,Katy Perry,Pop,2010,3:48
+

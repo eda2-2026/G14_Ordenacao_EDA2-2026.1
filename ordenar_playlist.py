@@ -1,8 +1,11 @@
 import csv
+import tkinter as tk
+from tkinter import ttk
+from tkinter import messagebox
 
-# ----------------------------
-# Função Merge
-# ----------------------------
+# ==================================================
+# FUNÇÃO MERGE
+# ==================================================
 
 def merge(esquerda, direita, chave):
 
@@ -13,15 +16,8 @@ def merge(esquerda, direita, chave):
 
     while i < len(esquerda) and j < len(direita):
 
-        valor_esq = (
-            esquerda[i][chave].lower(),
-            esquerda[i]["nome"].lower()
-        )
-
-        valor_dir = (
-            direita[j][chave].lower(),
-            direita[j]["nome"].lower()
-        )
+        valor_esq = esquerda[i][chave].lower()
+        valor_dir = direita[j][chave].lower()
 
         if valor_esq <= valor_dir:
             resultado.append(esquerda[i])
@@ -31,16 +27,20 @@ def merge(esquerda, direita, chave):
             resultado.append(direita[j])
             j += 1
 
-    # adiciona elementos restantes
-    resultado.extend(esquerda[i:])
-    resultado.extend(direita[j:])
+    while i < len(esquerda):
+        resultado.append(esquerda[i])
+        i += 1
+
+    while j < len(direita):
+        resultado.append(direita[j])
+        j += 1
 
     return resultado
 
 
-# ----------------------------
-# Merge Sort
-# ----------------------------
+# ==================================================
+# MERGE SORT
+# ==================================================
 
 def merge_sort(lista, chave):
 
@@ -55,87 +55,355 @@ def merge_sort(lista, chave):
     return merge(esquerda, direita, chave)
 
 
-# ----------------------------
-# Carregar Músicas
-# ----------------------------
+# ==================================================
+# CARREGAR MÚSICAS
+# ==================================================
 
 def carregar_musicas(caminho):
+
     musicas = []
-    
+
     try:
+
         with open(caminho, encoding='utf-8') as arquivo:
-            leitor = csv.DictReader(arquivo, delimiter=',')
+
+            leitor = csv.DictReader(arquivo)
+
             for linha in leitor:
                 musicas.append(linha)
+
     except FileNotFoundError:
-        print("Erro: arquivo musicas.csv não encontrado.")
-        return []
-    
+
+        messagebox.showerror(
+            'Erro',
+            'Arquivo musicas.csv não encontrado.'
+        )
+
     return musicas
 
-# ----------------------------
-# Main
-# ----------------------------
 
-def main():
-    musicas = carregar_musicas("musicas.csv")
+# ==================================================
+# EXPORTAR CSV
+# ==================================================
 
-    if not musicas:
-        return
+def exportar_csv(lista):
 
-    print("\n=== 🎵 ORDENADOR DE PLAYLISTS ===\n")
+    with open(
+        'playlist_exportada.csv',
+        'w',
+        newline='',
+        encoding='utf-8'
+    ) as arquivo:
 
-    while True:
-        print("Organizar músicas por:")
-        print("1 - Nome")
-        print("2 - Álbum")
-        print("3 - Artista")
-        print("4 - Gênero")
-        print("5 - Sair")
+        campos = [
+            'nome',
+            'album',
+            'artista',
+            'genero',
+            'ano',
+            'duracao'
+        ]
 
-        opcao = input("\nEscolha uma opção: ")
+        escritor = csv.DictWriter(
+            arquivo,
+            fieldnames=campos
+        )
 
-        if opcao == "1":
-            chave = "nome"
+        escritor.writeheader()
 
-        elif opcao == "2":
-            chave = "album"
+        for musica in lista:
+            escritor.writerow(musica)
 
-        elif opcao == "3":
-            chave = "artista"
+    messagebox.showinfo(
+        'Sucesso',
+        'Playlist exportada com sucesso!'
+    )
 
-        elif opcao == "4":
-            chave = "genero"
-        
-        elif opcao == "5":
-            print("Encerrando...")
-            break
 
-        else:
-            print("Opção inválida")
-            continue
+# ==================================================
+# INTERFACE
+# ==================================================
 
-        playlist_ordenada = merge_sort(musicas, chave)
+class App:
 
-        print("\n=== PLAYLIST ORDENADA ===\n")
+    def __init__(self, root):
 
-        for i, musica in enumerate(playlist_ordenada, start=1):
-            print(
-                f'{i}. '
-                f'{musica["nome"]} | '
-                f'{musica["album"]} | '
-                f'{musica["artista"]} | '
-                f'{musica["genero"]}'
+        self.root = root
+
+        self.root.title('🎵 Ordenador de Playlist')
+        self.root.geometry('1200x600')
+        self.root.configure(bg='#1e1e1e')
+
+        self.musicas = carregar_musicas('musicas.csv')
+
+        self.criar_widgets()
+        self.exibir_musicas(self.musicas)
+
+    # ==================================================
+    # CRIAR WIDGETS
+    # ==================================================
+
+    def criar_widgets(self):
+
+        titulo = tk.Label(
+            self.root,
+            text='🎵 Ordenador de Playlist com Merge Sort',
+            font=('Arial', 20, 'bold'),
+            bg='#1e1e1e',
+            fg='white'
+        )
+
+        titulo.pack(pady=10)
+
+        frame_topo = tk.Frame(
+            self.root,
+            bg='#1e1e1e'
+        )
+
+        frame_topo.pack(pady=10)
+
+        # ==============================================
+        # TEXTO ORDENAR
+        # ==============================================
+
+        label_ordenar = tk.Label(
+            frame_topo,
+            text='Ordenar por:',
+            bg='#1e1e1e',
+            fg='white'
+        )
+
+        label_ordenar.pack(
+            side=tk.LEFT,
+            padx=5
+        )
+
+        # ==============================================
+        # COMBOBOX
+        # ==============================================
+
+        self.combo = ttk.Combobox(
+            frame_topo,
+            values=[
+                'nome',
+                'album',
+                'artista',
+                'genero',
+                'ano',
+                'duracao'
+            ],
+            state='readonly',
+            width=15
+        )
+
+        self.combo.current(0)
+
+        self.combo.pack(
+            side=tk.LEFT,
+            padx=5
+        )
+
+        # ==============================================
+        # BOTÃO ORDENAR
+        # ==============================================
+
+        btn_ordenar = tk.Button(
+            frame_topo,
+            text='Ordenar',
+            command=self.ordenar,
+            bg='#4CAF50',
+            fg='white',
+            width=12
+        )
+
+        btn_ordenar.pack(
+            side=tk.LEFT,
+            padx=5
+        )
+
+        # ==============================================
+        # BUSCA
+        # ==============================================
+
+        self.busca = tk.Entry(
+            frame_topo,
+            width=30
+        )
+
+        self.busca.pack(
+            side=tk.LEFT,
+            padx=10
+        )
+
+        btn_busca = tk.Button(
+            frame_topo,
+            text='Buscar',
+            command=self.buscar,
+            bg='#2196F3',
+            fg='white'
+        )
+
+        btn_busca.pack(side=tk.LEFT)
+
+        # ==============================================
+        # EXPORTAR CSV
+        # ==============================================
+
+        btn_exportar = tk.Button(
+            frame_topo,
+            text='Exportar CSV',
+            command=lambda: exportar_csv(self.musicas),
+            bg='#FF9800',
+            fg='white'
+        )
+
+        btn_exportar.pack(
+            side=tk.LEFT,
+            padx=10
+        )
+
+        # ==============================================
+        # TABELA
+        # ==============================================
+
+        colunas = (
+            'nome',
+            'album',
+            'artista',
+            'genero',
+            'ano',
+            'duracao'
+        )
+
+        self.tree = ttk.Treeview(
+            self.root,
+            columns=colunas,
+            show='headings'
+        )
+
+        for coluna in colunas:
+
+            self.tree.heading(
+                coluna,
+                text=coluna.capitalize()
             )
-        
-        print("\nGostaria de outra ordenação?")
-        resposta = input("(1 - Sim, Qualquer Outro - Não)\n")
 
-        if resposta == '1':
-            continue
-        else:
-            print("Encerrando...")
-            break
+            self.tree.column(
+                coluna,
+                width=180
+            )
 
-if __name__ == "__main__":
-    main()
+        self.tree.pack(
+            fill=tk.BOTH,
+            expand=True,
+            padx=10,
+            pady=10
+        )
+
+        # ==============================================
+        # STATUS
+        # ==============================================
+
+        self.status = tk.Label(
+            self.root,
+            text='',
+            bg='#1e1e1e',
+            fg='white'
+        )
+
+        self.status.pack(pady=5)
+
+        self.atualizar_status(self.musicas)
+
+    # ==================================================
+    # STATUS
+    # ==================================================
+
+    def atualizar_status(self, lista):
+
+        total = len(lista)
+
+        artistas = set()
+
+        for musica in lista:
+            artistas.add(musica['artista'])
+
+        self.status.config(
+            text=f'Total de músicas: {total} | Artistas únicos: {len(artistas)}'
+        )
+
+    # ==================================================
+    # EXIBIR MÚSICAS
+    # ==================================================
+
+    def exibir_musicas(self, lista):
+
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        for musica in lista:
+
+            self.tree.insert(
+                '',
+                tk.END,
+                values=(
+                    musica['nome'],
+                    musica['album'],
+                    musica['artista'],
+                    musica['genero'],
+                    musica['ano'],
+                    musica['duracao']
+                )
+            )
+
+        self.atualizar_status(lista)
+
+    # ==================================================
+    # ORDENAR
+    # ==================================================
+
+    def ordenar(self):
+
+        chave = self.combo.get()
+
+        self.musicas = merge_sort(
+            self.musicas,
+            chave
+        )
+
+        self.exibir_musicas(self.musicas)
+
+    # ==================================================
+    # BUSCAR
+    # ==================================================
+
+    def buscar(self):
+
+        termo = self.busca.get().lower()
+
+        filtradas = []
+
+        for musica in self.musicas:
+
+            if (
+                termo in musica['nome'].lower()
+                or termo in musica['artista'].lower()
+                or termo in musica['album'].lower()
+            ):
+
+                filtradas.append(musica)
+
+        self.exibir_musicas(filtradas)
+
+
+# ==================================================
+# MAIN
+# ==================================================
+
+if __name__ == '__main__':
+
+    root = tk.Tk()
+
+    app = App(root)
+
+    root.mainloop()
