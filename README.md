@@ -57,3 +57,7 @@ O Merge Sort é um algoritmo de ordenação baseado em divisão e conquista.
 python ordenar_playlist.py
 ```
 ![execucao](image/image.png)
+
+## Video
+
+[Link para o vídeo.](https://youtu.be/9jdrQ1zSVoQ)
